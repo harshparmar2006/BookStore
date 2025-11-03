@@ -13,7 +13,7 @@ app.use(express.json());
 
 app.use(
   cors({
-    origin: ["https://startling-swan-dd4762.netlify.app", process.env.FRONTEND_URL, "http://localhost:5173"],
+    origin: "*", // Allow all origins temporarily for testing
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
