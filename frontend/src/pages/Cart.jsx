@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import API_URL from "../config";
 import { useNavigate } from "react-router-dom";
 import { ShoppingCart, Trash2, ArrowLeft, AlertCircle, CheckCircle } from "lucide-react";
 
@@ -24,7 +25,7 @@ const Cart = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:5000/api/v1/get-user-cart", {
+      const response = await fetch(`${API_URL}/get-user-cart`, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
@@ -59,7 +60,7 @@ const Cart = () => {
     setMessage("");
 
     try {
-      const response = await fetch("http://localhost:5000/api/v1/remove-book-from-cart", {
+      const response = await fetch(`${API_URL}/remove-book-from-cart`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

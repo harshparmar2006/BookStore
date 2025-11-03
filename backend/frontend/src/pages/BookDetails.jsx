@@ -12,7 +12,7 @@ const BookDetails = () => {
   const [message, setMessage] = useState("");
 
   useEffect(() => {
-    fetch(`http://localhost:5000/api/v1/get-book-by-id/${id}`, {
+    fetch(`https://bookstore-1-evle.onrender.com/api/v1/get-book-by-id/${id}`, {
       headers: {
         "Content-Type": "application/json",
       },
@@ -50,7 +50,7 @@ const BookDetails = () => {
     setMessage("");
 
     try {
-      const response = await fetch("http://localhost:5000/api/v1/add-to-cart", {
+      const response = await fetch("https://bookstore-1-evle.onrender.com/api/v1/add-to-cart", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -88,7 +88,7 @@ const BookDetails = () => {
     }
 
     // First add to cart, then redirect to cart page
-    const response = await fetch("http://localhost:5000/api/v1/add-to-cart", {
+    const response = await fetch("https://bookstore-1-evle.onrender.com/api/v1/add-to-cart", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

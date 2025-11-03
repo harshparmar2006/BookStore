@@ -24,7 +24,7 @@ const Cart = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:5000/api/v1/get-user-cart", {
+      const response = await fetch("https://bookstore-1-evle.onrender.com/api/v1/get-user-cart", {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
@@ -59,7 +59,7 @@ const Cart = () => {
     setMessage("");
 
     try {
-      const response = await fetch("http://localhost:5000/api/v1/remove-book-from-cart", {
+      const response = await fetch("https://bookstore-1-evle.onrender.com/api/v1/remove-book-from-cart", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
