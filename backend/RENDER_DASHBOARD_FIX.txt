@@ -1,0 +1,41 @@
+═══════════════════════════════════════════════════════════════
+  CRITICAL: FIX THIS IN RENDER DASHBOARD NOW
+═══════════════════════════════════════════════════════════════
+
+The error shows: npm cannot find /opt/render/project/src/package.json
+
+This means Render's "Root Directory" is set to "src" - IT MUST BE CHANGED!
+
+═══════════════════════════════════════════════════════════════
+STEP-BY-STEP FIX:
+═══════════════════════════════════════════════════════════════
+
+1. Go to: https://dashboard.render.com
+
+2. Click on: "BookStore-1" service
+
+3. Click on: "Settings" (in left sidebar)
+
+4. Scroll down to: "Build & Deploy" section
+
+5. Find the field: "Root Directory"
+
+6. CURRENT VALUE (WRONG): src
+   CHANGE IT TO (CORRECT): . (a single dot)
+   
+   OR: DELETE the value completely (leave it BLANK/EMPTY)
+
+7. VERIFY these other settings:
+   - Build Command: npm install
+   - Start Command: npm start (NOT "node app.js")
+
+8. Click: "Save Changes" button at bottom
+
+9. Go to: "Events" tab
+
+10. Click: "Manual Deploy" → "Deploy latest commit"
+
+═══════════════════════════════════════════════════════════════
+IF YOU DON'T FIX ROOT DIRECTORY, IT WILL NEVER WORK!
+═══════════════════════════════════════════════════════════════
+
