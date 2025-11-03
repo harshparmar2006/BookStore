@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import API_URL from "../config";
 import { useNavigate, Link } from "react-router-dom";
 import { Eye, EyeOff, BookOpen, AlertCircle, CheckCircle } from "lucide-react";
 
@@ -67,7 +68,7 @@ const Signup = () => {
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:5000/api/v1/sign-up", {
+      const response = await fetch(`${API_URL}/sign-up`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

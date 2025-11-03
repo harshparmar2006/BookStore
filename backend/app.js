@@ -13,7 +13,24 @@ app.use(express.json());
 
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL || "http://localhost:5173",
+    origin: (origin, callback) => {
+      const allowedOrigins = [
+        process.env.FRONTEND_URL,
+        process.env.ADDITIONAL_ORIGIN,
+        "http://localhost:5173",
+      ].filter(Boolean);
+
+      if (!origin) return callback(null, true);
+
+      try {
+        const hostname = new URL(origin).hostname;
+        const isNetlify = /\.netlify\.app$/.test(hostname);
+        const isAllowed = allowedOrigins.includes(origin) || isNetlify;
+        return isAllowed ? callback(null, true) : callback(new Error("CORS blocked"));
+      } catch (_) {
+        return callback(new Error("CORS origin parse error"));
+      }
+    },
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })

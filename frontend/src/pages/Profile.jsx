@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import API_URL from "../config";
 import { useNavigate } from "react-router-dom";
 import {
   User,
@@ -46,7 +47,7 @@ const Profile = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:5000/api/v1/get-user-information", {
+      const response = await fetch(`${API_URL}/get-user-information`, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
@@ -85,7 +86,7 @@ const Profile = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:5000/api/v1/update-email", {
+      const response = await fetch(`${API_URL}/update-email`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -131,7 +132,7 @@ const Profile = () => {
     const userId = localStorage.getItem("userId");
 
     try {
-      const response = await fetch("http://localhost:5000/api/v1/update-password", {
+      const response = await fetch(`${API_URL}/update-password`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -175,7 +176,7 @@ const Profile = () => {
     const userId = localStorage.getItem("userId");
 
     try {
-      const response = await fetch("http://localhost:5000/api/v1/update-address", {
+      const response = await fetch(`${API_URL}/update-address`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

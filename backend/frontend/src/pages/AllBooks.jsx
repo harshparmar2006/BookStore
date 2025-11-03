@@ -8,8 +8,7 @@ const AllBooks = () => {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    // ✅ Replace this URL according to your backend route
-    fetch("http://localhost:5000/api/v1/book/get-all-book", {
+    fetch("https://bookstore-1-evle.onrender.com/api/v1/book/get-all-book", {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${localStorage.getItem("token")}`,

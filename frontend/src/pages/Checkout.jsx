@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import API_URL from "../config";
 import { useNavigate } from "react-router-dom";
 import {
   ArrowLeft,
@@ -34,7 +35,7 @@ const Checkout = () => {
 
     try {
       // Fetch cart items
-      const cartResponse = await fetch("http://localhost:5000/api/v1/get-user-cart", {
+      const cartResponse = await fetch(`${API_URL}/get-user-cart`, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
@@ -50,7 +51,7 @@ const Checkout = () => {
       }
 
       // Fetch user data for address
-      const userResponse = await fetch("http://localhost:5000/api/v1/get-user-information", {
+      const userResponse = await fetch(`${API_URL}/get-user-information`, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
@@ -87,7 +88,7 @@ const Checkout = () => {
     setMessage("");
 
     try {
-      const response = await fetch("http://localhost:5000/api/v1/place-order", {
+      const response = await fetch(`${API_URL}/place-order`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

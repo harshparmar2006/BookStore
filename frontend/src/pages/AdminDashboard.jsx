@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import API_URL from "../config";
 import { useNavigate } from "react-router-dom";
 import {
   Plus,
@@ -54,7 +55,7 @@ const AdminDashboard = () => {
   const fetchBooks = async () => {
     const token = localStorage.getItem("token");
     try {
-      const response = await fetch("http://localhost:5000/api/v1/book/get-all-book");
+      const response = await fetch(`${API_URL}/book/get-all-book`);
       const data = await response.json();
       if (response.ok) {
         setBooks(data.data || []);
@@ -96,7 +97,7 @@ const AdminDashboard = () => {
     const userId = localStorage.getItem("userId");
 
     try {
-      const response = await fetch("http://localhost:5000/api/v1/add-book", {
+      const response = await fetch(`${API_URL}/add-book`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -145,7 +146,7 @@ const AdminDashboard = () => {
     const userId = localStorage.getItem("userId");
 
     try {
-      const response = await fetch("http://localhost:5000/api/v1/update-book", {
+      const response = await fetch(`${API_URL}/update-book`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -184,7 +185,7 @@ const AdminDashboard = () => {
     const userId = localStorage.getItem("userId");
 
     try {
-      const response = await fetch("http://localhost:5000/api/v1/delete-book", {
+      const response = await fetch(`${API_URL}/delete-book`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
