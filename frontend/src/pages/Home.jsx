@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Hero from "./Hero/Hero";
 import { BookOpen, Loader } from "lucide-react";
+import API_URL from "../config";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -14,7 +15,7 @@ const Home = () => {
 
   const fetchRecentBooks = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/v1/get-recent-book");
+      const response = await fetch(`${API_URL}/get-recent-book`);
       const data = await response.json();
       if (response.ok) {
         setRecentBooks(data.data || []);

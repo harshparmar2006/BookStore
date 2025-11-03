@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import API_URL from "../config";
 
 const AllBooks = () => {
   const navigate = useNavigate();
@@ -8,8 +9,8 @@ const AllBooks = () => {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    // ✅ Replace this URL according to your backend route
-    fetch("http://localhost:5000/api/v1/book/get-all-book", {
+    // Using centralized API URL
+    fetch(`${API_URL}/book/get-all-book`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${localStorage.getItem("token")}`,

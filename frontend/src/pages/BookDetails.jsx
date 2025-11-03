@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { ArrowLeft, ShoppingCart, Heart } from "lucide-react";
+import API_URL from "../config";
 
 const BookDetails = () => {
   const { id } = useParams();
@@ -12,7 +13,7 @@ const BookDetails = () => {
   const [message, setMessage] = useState("");
 
   useEffect(() => {
-    fetch(`http://localhost:5000/api/v1/get-book-by-id/${id}`, {
+    fetch(`${API_URL}/get-book-by-id/${id}`, {
       headers: {
         "Content-Type": "application/json",
       },
@@ -50,7 +51,7 @@ const BookDetails = () => {
     setMessage("");
 
     try {
-      const response = await fetch("http://localhost:5000/api/v1/add-to-cart", {
+      const response = await fetch(`${API_URL}/add-to-cart`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -88,7 +89,7 @@ const BookDetails = () => {
     }
 
     // First add to cart, then redirect to cart page
-    const response = await fetch("http://localhost:5000/api/v1/add-to-cart", {
+    const response = await fetch(`${API_URL}/add-to-cart`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
