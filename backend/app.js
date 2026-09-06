@@ -4,7 +4,7 @@ const cors = require("cors");
 
 const mongoose = require("mongoose");
 require("dotenv").config();
-require("./conn/conn");
+const databaseConnection = require("./conn/conn");
 const user = require("./routes/user");
 const book = require("./routes/book");
 const cart = require("./routes/cart");
@@ -17,7 +17,7 @@ app.use(
       const allowedOrigins = [
         process.env.FRONTEND_URL,
         process.env.ADDITIONAL_ORIGIN,
-        "http://localhost:5173",
+        "http://localhost:5174",
       ].filter(Boolean);
 
       if (!origin) return callback(null, true);
@@ -45,6 +45,12 @@ app.use("/api/v1", Order);
 // Creating port
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => {
-  console.log(`SERVER STARTED AT PORT ${PORT}`);
-});
+databaseConnection
+  .then(() => {
+    app.listen(PORT, () => {
+      console.log(`SERVER STARTED AT PORT ${PORT}`);
+    });
+  })
+  .catch(() => {
+    process.exit(1);
+  });
