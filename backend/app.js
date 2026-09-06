@@ -3,6 +3,7 @@ const app = express();
 const cors = require("cors");
 
 const mongoose = require("mongoose");
+
 require("dotenv").config();
 const databaseConnection = require("./conn/conn");
 const user = require("./routes/user");
@@ -26,14 +27,16 @@ app.use(
         const hostname = new URL(origin).hostname;
         const isNetlify = /\.netlify\.app$/.test(hostname);
         const isAllowed = allowedOrigins.includes(origin) || isNetlify;
-        return isAllowed ? callback(null, true) : callback(new Error("CORS blocked"));
+        return isAllowed
+          ? callback(null, true)
+          : callback(new Error("CORS blocked"));
       } catch (_) {
         return callback(new Error("CORS origin parse error"));
       }
     },
-    methods: ["GET", "POST", "PUT", "DELETE"],
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     credentials: true,
-  })
+  }),
 );
 
 //routes
