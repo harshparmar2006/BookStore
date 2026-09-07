@@ -82,7 +82,8 @@ router.put("/update-status/:id", authenticateToken, async (req, res) => {
   }
 });
 
-router.get("/api/getmsg", (req, res) => {
+// for api hot
+router.get("/get-ordersby", (req, res) => {
   console.log("working api");
   return res.status(200).json("working api");
 });
