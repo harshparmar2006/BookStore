@@ -40,10 +40,10 @@ app.use(
 );
 
 //routes
-app.use("/api/v1", user);
-app.use("/api/v1", book);
-app.use("/api/v1", cart);
-app.use("/api/v1", Order);
+app.use("/", user);
+app.use("/", book);
+app.use("/", cart);
+app.use("/", Order);
 
 // Creating port
 const PORT = process.env.PORT || 5000;
