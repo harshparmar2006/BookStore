@@ -69,9 +69,9 @@ router.get("/get-all-orders", authenticateToken, async (req, res) => {
 });
 
 // for api hot
-router.get("/working", (req, res) => {
-  console.log("working api");
-  return res.status(200).json("working api");
+router.get("/api/user/health", (req, res) => {
+  console.log("working this api");
+  return res.status(200).json("working");
 });
 
 //update order-admin role
@@ -87,6 +87,5 @@ router.put("/update-status/:id", authenticateToken, async (req, res) => {
     return res.status(500).json({ message: "An error occured" });
   }
 });
-
 
 module.exports = router;
