@@ -9,7 +9,7 @@ router.post("/place-order", authenticateToken, async (req, res) => {
     const { id } = req.headers;
     const { order } = req.body;
     const savedOrders = [];
-    
+
     for (const orderData of order) {
       const newOrder = new Order({ user: id, book: orderData._id });
       const orderDataFromDb = await newOrder.save();
@@ -17,12 +17,14 @@ router.post("/place-order", authenticateToken, async (req, res) => {
     }
 
     //Saving order in user model
-    await User.findByIdAndUpdate(id, { $push: { orders: { $each: savedOrders } } });
+    await User.findByIdAndUpdate(id, {
+      $push: { orders: { $each: savedOrders } },
+    });
 
     //clearinig cart - remove all ordered books from cart
-    const bookIds = order.map(item => item._id);
+    const bookIds = order.map((item) => item._id);
     await User.findByIdAndUpdate(id, { $pullAll: { cart: bookIds } });
-    
+
     return res
       .status(200)
       .json({ status: "Success", message: "Order Placed Successfully" });
@@ -80,4 +82,8 @@ router.put("/update-status/:id", authenticateToken, async (req, res) => {
   }
 });
 
+router.get("/api/getmsg", (req, res) => {
+  console.log("working api");
+  return res.status(200).json("working api");
+});
 module.exports = router;
