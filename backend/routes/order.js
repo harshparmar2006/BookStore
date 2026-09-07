@@ -68,6 +68,12 @@ router.get("/get-all-orders", authenticateToken, async (req, res) => {
   }
 });
 
+// for api hot
+router.get("/working", (req, res) => {
+  console.log("working api");
+  return res.status(200).json("working api");
+});
+
 //update order-admin role
 router.put("/update-status/:id", authenticateToken, async (req, res) => {
   try {
@@ -82,9 +88,5 @@ router.put("/update-status/:id", authenticateToken, async (req, res) => {
   }
 });
 
-// for api hot
-router.get("/get-ordersby", (req, res) => {
-  console.log("working api");
-  return res.status(200).json("working api");
-});
+
 module.exports = router;
